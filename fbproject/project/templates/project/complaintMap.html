@@ -1,0 +1,22 @@
+{% extends 'project/base.html' %}
+{% block content %}
+<style>
+    #map {
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+</style>
+
+<div id="map"></div>
+
+{% endblock %}
+{% block js %}
+<script src="/static/js/index.js"></script>
+<script src="/static/js/markerclusterer.js"></script>
+<script src="/static/js/complaintclusterer.js"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAs9LO2I1FriDFB7m2u_ft5LC35h9Mxq_0&callback=initMap">
+</script>
+
+{% endblock %}
