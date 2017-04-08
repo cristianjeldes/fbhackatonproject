@@ -76,6 +76,20 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+class Complaint(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    type = models.ForeignKey('TypeTransport', models.DO_NOTHING, db_column='TYPE_ID')  # Field name made lowercase.
+    user = models.ForeignKey('User', models.DO_NOTHING, db_column='USER_ID')  # Field name made lowercase.
+    time = models.DateTimeField(db_column='TIME')  # Field name made lowercase.
+    gps_lat = models.BigIntegerField(db_column='GPS_LAT', blank=True, null=True)  # Field name made lowercase.
+    gps_lon = models.BigIntegerField(db_column='GPS_LON', blank=True, null=True)  # Field name made lowercase.
+    description = models.TextField(db_column='DESCRIPTION', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'complaint'
+
+
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -120,10 +134,36 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class Test(models.Model):
-    id = models.IntegerField(primary_key=True, blank=True, null=False)
-    name = models.TextField(blank=True, null=True)
+class Transport(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    typ = models.ForeignKey('TypeTransport', models.DO_NOTHING, db_column='TYP_ID')  # Field name made lowercase.
+    rural = models.IntegerField(db_column='RURAL', blank=True, null=True)  # Field name made lowercase.
+    patent = models.CharField(db_column='PATENT', max_length=30, blank=True, null=True)  # Field name made lowercase.
+    name = models.CharField(db_column='NAME', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    line = models.CharField(db_column='LINE', max_length=3, blank=True, null=True)  # Field name made lowercase.
+    station = models.CharField(db_column='STATION', max_length=50, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = 'test'
+        db_table = 'transport'
+
+
+class TypeTransport(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    name = models.CharField(db_column='NAME', max_length=50)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'type_transport'
+
+
+class User(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    id_django = models.IntegerField(db_column='ID_DJANGO', blank=True, null=True)  # Field name made lowercase.
+    name = models.CharField(db_column='NAME', max_length=50)  # Field name made lowercase.
+    email = models.CharField(db_column='EMAIL', max_length=50)  # Field name made lowercase.
+    phone = models.CharField(db_column='PHONE', max_length=15, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'user'

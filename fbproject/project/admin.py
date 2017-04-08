@@ -1,3 +1,16 @@
 from django.contrib import admin
 from .models import *
-admin.site.register(Test)
+admin.site.register(AuthGroup)
+admin.site.register(AuthGroupPermissions)
+admin.site.register(AuthPermission)
+admin.site.register(AuthUser)
+admin.site.register(AuthUserGroups)
+admin.site.register(AuthUserUserPermissions)
+admin.site.register(Complaint)
+admin.site.register(DjangoAdminLog)
+admin.site.register(DjangoContentType)
+admin.site.register(DjangoMigrations)
+admin.site.register(DjangoSession)
+admin.site.register(Transport)
+admin.site.register(TypeTransport)
+admin.site.register(User)
