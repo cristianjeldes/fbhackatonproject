@@ -2,7 +2,14 @@
 {% block content %}
 <h1>Bienvenido!</h1>
 <h2 id="hola">ASLKDJLSAKDJSA</h2>
+
+<div id="map"></div>
+
 {% endblock %}
 {% block js %}
 <script src="/static/js/index.js"></script>
+<script src="/static/js/geolocation.js"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAs9LO2I1FriDFB7m2u_ft5LC35h9Mxq_0&callback=initMap">
+</script>
 {% endblock %}
