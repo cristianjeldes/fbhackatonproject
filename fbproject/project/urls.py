@@ -19,5 +19,6 @@ from .views import *
 
 urlpatterns = [
 	url(r'^$', IndexView.as_view()),
+	url(r'^complaint_map/$', ComplaintMapView.as_view()),
     url(r'^admin/', admin.site.urls),
 ]

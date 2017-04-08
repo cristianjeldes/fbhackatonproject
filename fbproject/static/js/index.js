@@ -1,4 +1,3 @@
 function alerta(){
-	alert("hi!");
+	return "hi";
 }
-alerta();

@@ -13,3 +13,6 @@ global basePath
 class IndexView(View):
 	def get(self, request):
 		return render(request, 'project/index.html',{})
+class ComplaintMapView(View):
+	def get(self, request):
+		return render(request, 'project/complaintMap.html',{})

@@ -78,6 +78,7 @@ class AuthUserUserPermissions(models.Model):
 
 class Complaint(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    pro = models.ForeignKey('Problem', models.DO_NOTHING, db_column='PRO_ID')  # Field name made lowercase.
     type = models.ForeignKey('TypeTransport', models.DO_NOTHING, db_column='TYPE_ID')  # Field name made lowercase.
     user = models.ForeignKey('User', models.DO_NOTHING, db_column='USER_ID')  # Field name made lowercase.
     time = models.DateTimeField(db_column='TIME')  # Field name made lowercase.
@@ -132,6 +133,16 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
+
+class Problem(models.Model):
+    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    name = models.CharField(db_column='NAME', max_length=50)  # Field name made lowercase.
+    description = models.TextField(db_column='DESCRIPTION', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'problem'
 
 
 class Transport(models.Model):
