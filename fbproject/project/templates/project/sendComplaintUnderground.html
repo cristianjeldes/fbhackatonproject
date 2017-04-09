@@ -1,0 +1,207 @@
+{% extends 'project/base.html' %}
+{% block content %}
+<div style="width: 100%; height: 96%;position: absolute; top:4%;right:0px; background:rgb(40,40,40);">
+	<div class="form-content center-block">
+		<h1 style="text-align:center;">Complaint!</h1>
+		<form method="post" action="" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="form-group" style="width:500px;margin: 0 auto;">
+				<div class="row">
+					<label for="line">Line
+						<select id="line" required name="line" class="form-control">
+							<option value="1">Linea 1</option>
+							<option value="2">Linea 2</option>
+							<option value="4">Linea 4</option>
+							<option value="4A">Linea 4A</option>
+							<option value="5">Linea 5</option>
+						</select>
+					</label>
+				</div>
+				<div class="row">
+					<label for="line">Station
+						<select id="stations" required name="line" class="form-control">
+							<option value="None">None</option>
+						</select>
+					</label>
+				</div>
+				<div class="row">
+					<label for="typecomplaint">Type of complaint
+						<select required name="typecomplaint" class="form-control">
+						{% for type in complainttypes %}
+							<option title="{{type.description}}" value="{{type.pk}}">{{type.name}}</option>
+						{% endfor %}
+						</select>
+					</label>
+				</div>
+				<div class="row">
+					<label for="description">Description (optional)
+						<textarea class="form-control" type="text" name="description" placeholder="Example: This happen while i was going to work..."></textarea>
+					</label>
+				</div>
+				<br>
+				<br>
+				<input class="btn-primary btn" style="margin:0 auto;" type="submit" value="Send complaint"/>
+			</div>
+		</form>
+	</div>
+{% endblock %}
+{% block js %}
+<script src="/static/js/index.js"></script>
+<script type="text/javascript">
+var l1 = {"San Pablo":"San Pablo",
+"Neptuno":"Neptuno",
+"Pajaritos":"Pajaritos",
+"Las Rejas":"Las Rejas",
+"Ecuador":"Ecuador",
+"San Alberto Hurtado":"San Alberto Hurtado",
+"Universidad de Santiago":"Universidad de Santiago",
+"Estación Central":"Estación Central",
+"Unión Latinoamericana":"Unión Latinoamericana",
+"República":"República",
+"Los Héroes":"Los Héroes",
+"La Moneda":"La Moneda",
+"Universidad de Chile":"Universidad de Chile",
+"Santa Lucía":"Santa Lucía",
+"Universidad Católica":"Universidad Católica",
+"Baquedano":"Baquedano",
+"Salvador":"Salvador",
+"Manuel Montt":"Manuel Montt",
+"Pedro de Valdivia":"Pedro de Valdivia",
+"Los Leones":"Los Leones",
+"Tobalaba":"Tobalaba",
+"El Golf":"El Golf",
+"Alcántara":"Alcántara",
+"Escuela Militar":"Escuela Militar",
+"Manquehue":"Manquehue",
+"Hernando de Magallanes":"Hernando de Magallanes",
+"Los Dominicos":"Los Dominicos"};
+var l2 = {
+	"La Cisterna":"La Cisterna",
+"El Parrón":"El Parrón",
+"Lo Ovalle":"Lo Ovalle",
+"Ciudad del Niño":"Ciudad del Niño",
+"Departamental":"Departamental",
+"Lo Vial":"Lo Vial",
+"San Miguel":"San Miguel",
+"El Llano":"El Llano",
+"Franklin":"Franklin",
+"Rondizzoni":"Rondizzoni",
+"Parque O'Higgins":"Parque O'Higgins",
+"Toesca":"Toesca",
+"Los Héroes":"Los Héroes",
+"Santa Ana":"Santa Ana",
+"Cal y Canto":"Cal y Canto",
+"Patronato":"Patronato",
+"Cerro Blanco":"Cerro Blanco",
+"Cementerios":"Cementerios",
+"Einstein":"Einstein",
+"Dorsal":"Dorsal",
+"Zapadores":"Zapadores",
+"Vespucio Norte":"Vespucio Norte",
+};
+
+var l4 = {
+	"Plaza Puente Alto":"Plaza Puente Alto",
+"Las Mercedes":"Las Mercedes",
+"Protectora de la Infancia":"Protectora de la Infancia",
+"Hospital Sótero del Río":"Hospital Sótero del Río",
+"Elisa Correa":"Elisa Correa",
+"Los Quillayes":"Los Quillayes",
+"San José de la Estrella":"San José de la Estrella",
+"Trinidad":"Trinidad",
+"Rojas Magallanes":"Rojas Magallanes",
+"Vicente Valdés":"Vicente Valdés",
+"Vicuña Mackenna":"Vicuña Mackenna",
+"Macul":"Macul",
+"Las Torres":"Las Torres",
+"Quilín":"Quilín",
+"Los Presidentes":"Los Presidentes",
+"Grecia":"Grecia",
+"Los Orientales":"Los Orientales",
+"Plaza Egaña":"Plaza Egaña",
+"Simón Bolivar":"Simón Bolivar",
+"Príncipe de Gales":"Príncipe de Gales",
+"Francisco Bilbao":"Francisco Bilbao",
+"Cristóbal Colón":"Cristóbal Colón",
+"Tobalaba":"Tobalaba",
+};
+
+var l4A = {
+	"La Cisterna":"La Cisterna",
+"San Ramón":"San Ramón",
+"Santa Rosa":"Santa Rosa",
+"La Granja":"La Granja",
+"Santa Julia":"Santa Julia",
+"Vicuña Mackenna":"Vicuña Mackenna",
+};
+
+var l5 = {
+	"Vicente Valdés":"Vicente Valdés",
+"Bellavista de La Florida":"Bellavista de La Florida",
+"Mirador":"Mirador",
+"Pedrero":"Pedrero",
+"San Joaquín":"San Joaquín",
+"Camino Agrícola":"Camino Agrícola",
+"Carlos Valdovinos":"Carlos Valdovinos",
+"Rodrigo de Araya":"Rodrigo de Araya",
+"Ñuble":"Ñuble",
+"Irarrázaval":"Irarrázaval",
+"Santa Isabel":"Santa Isabel",
+"Parque Bustamante":"Parque Bustamante",
+"Baquedano":"Baquedano",
+"Bellas Artes":"Bellas Artes",
+"Plaza de Armas":"Plaza de Armas",
+"Santa Ana":"Santa Ana",
+"Cumming":"Cumming",
+"Quinta Normal":"Quinta Normal",
+"Gruta de Lourdes":"Gruta de Lourdes",
+"Blanqueado":"Blanqueado",
+"Lo Prado":"Lo Prado",
+"San Pablo":"San Pablo",
+"Pudahuel":"Pudahuel",
+"Barrancas":"Barrancas",
+"Laguna Sur":"Laguna Sur",
+"Las Parcelas":"Las Parcelas",
+"Monte Tabor":"Monte Tabor",
+"Del Sol":"Del Sol",
+"Santiago Bueras":"Santiago Bueras",
+"Plaza Maipú":"Plaza Maipú",
+};
+
+var $el = $("#stations");
+$el.empty(); // remove old options
+$.each(l1, function(key,value) {
+  $el.append($("<option></option>").attr("value", value).text(key));
+});
+function changeOptionsStations(listLine){
+	$el.empty(); // remove old options
+	$.each(listLine, function(key,value) {
+				  $el.append($("<option></option>").attr("value", value).text(key));
+				});
+}
+$(document).on('change','#line',function(){
+   $('#line option').each(
+		function() {
+			
+		    if(this.value==="1" && this.selected){
+				changeOptionsStations(l1);
+		    }
+		    else if(this.value==="2"  && this.selected){
+				changeOptionsStations(l2);
+		    }
+		    else if(this.value==="4"  && this.selected){
+				changeOptionsStations(l4);
+		    }
+		    else if(this.value==="4A"  && this.selected){
+				changeOptionsStations(l4A);
+		    }
+		    else if(this.value==="5"  && this.selected){
+				changeOptionsStations(l5);
+		    }
+		}
+	)
+});
+
+
+</script>
+{% endblock %}

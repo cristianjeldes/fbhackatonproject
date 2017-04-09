@@ -3,6 +3,43 @@
 	color: red;
 }
 
+.form-content{
+	width:600px;
+	min-width: 300px;
+	box-shadow: 0px -1px 30px 0px rgba(50, 50, 50, 0.75)
+	margin: 0 auto;
+	background: rgb(70,70,70);
+	height: 100%;
+	padding: 100px 0 0 0;
+	color: rgb(240,240,240);
+}
+
+.select-type{
+	height: 33.3333%;
+	background: rgb(50,50,50);
+	font-size:3em;
+	text-align: center;
+	border-bottom: 1px rgba(220,220,220,0.3) solid;
+}
+.select-type > h3{
+	padding:100px 0 0 0;
+	margin:0px;
+	color:rgb(220,220,220);
+}
+
+.select-type-bus{
+	height: 50%;
+	background: rgb(50,50,50);
+	font-size:3em;
+	text-align: center;
+	border-bottom: 1px rgba(220,220,220,0.3) solid;
+}
+.select-type-bus > h3{
+	padding:100px 0 0 0;
+	margin:0px;
+	color:rgb(220,220,220);
+}
+
 #map {
     height: 100%;
 }
