@@ -13,7 +13,8 @@ global basePath
 from django.contrib.auth.models import User as User2
 class IndexView(View):
 	def get(self, request):
-		return render(request, 'project/index.html',{})
+		complainttypes = Problem.objects.all()
+		return render(request, 'project/index.html',{'complainttypes':complainttypes})
 class ComplaintMapView(View):
 	def get(self, request):
 		return render(request, 'project/complaintMap.html',{})
@@ -51,7 +52,7 @@ class SelectTypeBusRuralView(View):
 			transport.pk, timezone.now(), int(float(lat)*10**6),
 			int(float(lng)*10**6), description)
 		complaint.save()
-		return redirect("/complaint_map/")
+		return redirect("/")
 
 class SelectTypeBusTransantiagoView(View):
 	def get(self, request):
@@ -79,7 +80,7 @@ class SelectTypeBusTransantiagoView(View):
 			transport.pk, timezone.now(), int(float(lat)*10**6),
 			int(float(lng)*10**6), description)
 		complaint.save()
-		return redirect("/complaint_map/")
+		return redirect("/")
 
 class SelectTypeTaxiView(View):
 	def get(self, request):
@@ -107,7 +108,7 @@ class SelectTypeTaxiView(View):
 			transport.pk, timezone.now(), int(float(lat)*10**6),
 			int(float(lng)*10**6), description)
 		complaint.save()
-		return redirect("/complaint_map/")
+		return redirect("/")
 class SelectTypeUndergroundView(View):
 	def get(self, request):
 		complainttypes = Problem.objects.all()
@@ -134,7 +135,7 @@ class SelectTypeUndergroundView(View):
 			transport.pk, timezone.now(), int(float(lat)*10**6),
 			int(float(lng)*10**6), description)
 		complaint.save()
-		return redirect("/complaint_map/")
+		return redirect("/")
 
 class RegisterView(View):
 	def get(self, request):

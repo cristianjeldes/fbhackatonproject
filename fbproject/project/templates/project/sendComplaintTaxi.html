@@ -5,6 +5,8 @@
 		<h1 style="text-align:center;">Complaint!</h1>
 		<form method="post" action="" enctype="multipart/form-data">
 			{% csrf_token %}
+			<input id="lat" name="lat" type="hidden">
+			<input id="long" name="long" type="hidden">
 			<div class="form-group">
 				<div class="row">
 					<label for="name">Line - Number - Code
@@ -40,4 +42,11 @@
 {% endblock %}
 {% block js %}
 <script src="/static/js/index.js"></script>
+<script src="/static/js/complaintclusterer.js"></script>
+<script src="/static/js/geolocation.js"></script>
+<script>
+var pos = getLocation();
+$('#lat').val(pos.lat);
+$('#long').val(pos.lng);
+</script>
 {% endblock %}

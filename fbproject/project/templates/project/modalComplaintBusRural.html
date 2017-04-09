@@ -4,8 +4,10 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-    <form method="post" action="" enctype="multipart/form-data">
+    <form method="post" action="/select_type/bus/rural/" enctype="multipart/form-data">
 		{% csrf_token %}
+		<input id="latrural" name="lat" type="hidden">
+		<input id="longrural" name="long" type="hidden">
       	<div class="modal-header">
         	<button type="button" class="close" data-dismiss="modal">&times;</button>
         	<h4 class="modal-title">Rural Bus Complaint</h4>
@@ -23,8 +25,8 @@
 					</label>
 				</div>
 				<div class="row">
-					<label for="">Color
-						<input required class="form-control" type="text" name="" placeholder="Red, orange, etc..">
+					<label for="color">Color
+						<input required class="form-control" type="text" name="color" placeholder="Red, orange, etc..">
 					</label>
 				</div>
 				<div class="row">
@@ -47,10 +49,17 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<input class="btn-primary btn" type="submit" value="Send complaint" data-dismiss="modal"/>
+			<input class="btn-primary btn" type="submit" value="Send complaint" />
   		</div>
     	</div>
     </form>
   </div>
 </div>
-		
+<script src="/static/js/index.js"></script>
+<script src="/static/js/complaintclusterer.js"></script>
+<script src="/static/js/geolocation.js"></script>
+<script>
+var pos = getLocation();
+$('#latrural').val(pos.lat);
+$('#longrural').val(pos.lng);
+</script>
