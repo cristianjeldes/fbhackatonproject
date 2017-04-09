@@ -7,8 +7,8 @@
 			{% csrf_token %}
 			<div class="form-group" style="width:500px;margin: 0 auto;">
 				<div class="row">
-					<label for="name">Line - Number - Code
-						<input required class="form-control" type="text" name="name" placeholder="Example: 3333">
+					<label for="name">Full name
+						<input required class="form-control" type="text" name="name" placeholder="Cristian Jeldes">
 					</label>
 				</div>
 				<div class="row">
@@ -17,17 +17,13 @@
 					</label>
 				</div>
 				<div class="row">
-					<label for="typecomplaint">Type of complaint
-						<select required name="typecomplaint" class="form-control">
-						{% for type in complainttypes %}
-							<option title="{{type.description}}" value="{{type.pk}}">{{type.name}}</option>
-						{% endfor %}
-					</select>
+					<label for="patent">License Plate (optional)
+						<input class="form-control" type="text" name="patent" placeholder="Ejemplo:LLNNNN - LLLLNN">
 					</label>
 				</div>
 				<div class="row">
-					<label for="description">Description (optional)
-						<textarea class="form-control" type="text" name="description" placeholder="Example: This happen while i was going to work..."></textarea>
+					<label for="patent">License Plate (optional)
+						<input class="form-control" type="text" name="patent" placeholder="Ejemplo:LLNNNN - LLLLNN">
 					</label>
 				</div>
 				<br>
