@@ -79,8 +79,8 @@ class AuthUserUserPermissions(models.Model):
 class Complaint(models.Model):
     idcomplaint = models.AutoField(db_column='IDCOMPLAINT', primary_key=True)  # Field name made lowercase.
     iduser = models.ForeignKey('User', models.DO_NOTHING, db_column='IDUSER', blank=True, null=True)  # Field name made lowercase.
-    idtypetransport = models.ForeignKey('TypeTransport', models.DO_NOTHING, db_column='IDTYPETRANSPORT', blank=True, null=True)  # Field name made lowercase.
     idproblem = models.ForeignKey('Problem', models.DO_NOTHING, db_column='IDPROBLEM', blank=True, null=True)  # Field name made lowercase.
+    idtransport = models.ForeignKey('Transport', models.DO_NOTHING, db_column='IDTRANSPORT', blank=True, null=True)  # Field name made lowercase.
     time = models.DateTimeField(db_column='TIME')  # Field name made lowercase.
     gps_lat = models.BigIntegerField(db_column='GPS_LAT', blank=True, null=True)  # Field name made lowercase.
     gps_lon = models.BigIntegerField(db_column='GPS_LON', blank=True, null=True)  # Field name made lowercase.
