@@ -10,6 +10,7 @@ from project.models import *
 import math
 from collections import namedtuple
 global basePath
+from django.contrib.auth.models import User as User2
 class IndexView(View):
 	def get(self, request):
 		return render(request, 'project/index.html',{})
@@ -53,4 +54,14 @@ class RegisterView(View):
 	def get(self, request):
 		return render(request, 'project/register.html',{})
 	def post(self, request):
+		name = request.POST["name"]
+		email = request.POST["mail"]
+		password = request.POST["password"]
+		djangouser = User2.objects.create_user(username=email,
+                                 email=email,
+                                 password=password)
+		djangouser.save()
+
+		user = User(None, djangouser.pk, name, email, "")
+		user.save()
 		return redirect("/login/")
