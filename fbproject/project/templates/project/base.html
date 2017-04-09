@@ -10,6 +10,7 @@
     <title>{{title}}</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="/static/css/sidebar.css" rel="stylesheet">
     <link href="/static/css/main.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -24,9 +25,10 @@
     <![endif]-->
 
 </head>
+  <div class="page-container">
   <body style="padding: 0; margin: 0;">
-    <nav class="navbar navbar-inverse navbar-fixed-top" style="height:4%;">
-      <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid navbar-ui">
         <div id="navbar" class="collapse navbar-collapse">
           {% block navigator %}
           {% if user.is_authenticated %}
@@ -46,12 +48,34 @@
         </div>
       </div>
     </nav>
-    <div class="container" style="margin:4% 0 0 0;padding: 0;">
-      {% block content %}
-      {% endblock %}
+    <div class="container-fluid">
+      <div class="row row-offcanvas row-offcanvas-left">
+        
+        <!--sidebar-->
+        <div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div data-spy="affix" data-offset-top="45" data-offset-bottom="90">
+            <ul class="nav nav-list" id="sidebar-nav">
+              <li><label class="nav-header">Make a complaint</label>
+                <ul class="nav nav-list tree">
+                  <li><a href="/select_type/bus/rural">Rural Bus</a></li>
+                  <li><a href="/select_type/bus/transantiago">Transantiago</a></li>
+                  <li><a href="/select_type/taxi">Taxi</a></li>
+                  <li><a href="/select_type/underground">Metro</a></li>
+                </ul>
+              </li>
+              <li><label class="nav-header"></label></li>
+              <li><a href="/"><b>Complaints Map</b></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-10" data-spy="scroll" style="margin:0; padding:0;">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
     </div>
     {% block js %}
     {% endblock %}
-
+  </div>
   </body>
-  </html>
+</html>
