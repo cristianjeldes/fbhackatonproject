@@ -1,0 +1,59 @@
+<!-- Modal -->
+<div id="modalMetro" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+    <form method="post" action="" enctype="multipart/form-data">
+		{% csrf_token %}
+      	<div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+        	<h4 class="modal-title">Metro Complaint</h4>
+      	</div>
+      	<div class="modal-body">
+			<div class="form-group">
+				<div class="row">
+					<label for="line">Line
+						<select id="line" required name="line" class="form-control">
+							<option value="1">Linea 1</option>
+							<option value="2">Linea 2</option>
+							<option value="4">Linea 4</option>
+							<option value="4A">Linea 4A</option>
+							<option value="5">Linea 5</option>
+						</select>
+					</label>
+				</div>
+				<div class="row">
+					<label for="line">Station
+						<select id="stations" required name="line" class="form-control">
+							<option value="None">None</option>
+						</select>
+					</label>
+				</div>
+				<div class="row">
+					<label for="typecomplaint">Type of complaint
+						<select required name="typecomplaint" class="form-control">
+						{% for type in complainttypes %}
+							<option title="{{type.description}}" value="{{type.pk}}">{{type.name}}</option>
+						{% endfor %}
+						</select>
+					</label>
+				</div>
+				<div class="row">
+					<label for="description">Description (optional)
+						<textarea class="form-control" type="text" name="description" placeholder="Example: This happen while i was going to work..."></textarea>
+					</label>
+				</div>
+				<br>
+				<br>
+				
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input class="btn-primary btn" type="submit" value="Send complaint" data-dismiss="modal"/>
+  		</div>
+    	</div>
+    </form>
+  </div>
+</div>
+		

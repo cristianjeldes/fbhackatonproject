@@ -1,6 +1,12 @@
 {% extends 'project/base.html' %}
 {% block content %}
 <div id="map"></div>
+
+{% include "project/modalComplaintTaxi.html" %}
+{% include "project/modalComplaintMetro.html" %}
+{% include "project/modalComplaintBusRural.html" %}
+{% include "project/modalComplaintBusTransantiago.html" %}
+
 {% endblock %}
 {% block js %}
 <script src="/static/js/index.js"></script>

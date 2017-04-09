@@ -3,6 +3,12 @@
 	color: red;
 }
 
+form {
+	padding: 0 0;
+	margin: 0 0;
+	color: rgb(240,240,240);
+}
+
 .form-content{
 	width:600px;
 	min-width: 300px;
@@ -11,13 +17,7 @@
 	margin: 0 auto;
 	background: rgb(70,70,70);
 	height: 100%;
-	padding: 50px 0 0 0;
 	color: rgb(240,240,240);
-}
-
-.form-group {
-	width: 450px;
-	margin: 0 auto;
 }
 
 #form-title {

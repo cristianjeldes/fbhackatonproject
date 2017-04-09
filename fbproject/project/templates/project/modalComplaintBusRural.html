@@ -1,0 +1,56 @@
+<!-- Modal -->
+<div id="modalRuralBus" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+    <form method="post" action="" enctype="multipart/form-data">
+		{% csrf_token %}
+      	<div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+        	<h4 class="modal-title">Rural Bus Complaint</h4>
+      	</div>
+      	<div class="modal-body">
+			<div class="form-group">
+				<div class="row">
+					<label for="name">Code of bus
+						<input required class="form-control" type="text" name="name" placeholder="Example: 210">
+					</label>
+				</div>
+				<div class="row">
+					<label for="patent">License Plate (optional)
+						<input class="form-control" type="text" name="patent" placeholder="Ejemplo:LLNNNN - LLLLNN">
+					</label>
+				</div>
+				<div class="row">
+					<label for="">Color
+						<input required class="form-control" type="text" name="" placeholder="Red, orange, etc..">
+					</label>
+				</div>
+				<div class="row">
+					<label for="typecomplaint">Type of complaint
+						<select required name="typecomplaint" class="form-control">
+						{% for type in complainttypes %}
+							<option title="{{type.description}}" value="{{type.pk}}">{{type.name}}</option>
+						{% endfor %}
+					</select>
+					</label>
+				</div>
+				<div class="row">
+					<label for="description">Description (optional)
+						<textarea class="form-control" type="text" name="description" placeholder="Example: This happen while i was going to work..."></textarea>
+					</label>
+				</div>
+				<br>
+				<br>
+				
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input class="btn-primary btn" type="submit" value="Send complaint" data-dismiss="modal"/>
+  		</div>
+    	</div>
+    </form>
+  </div>
+</div>
+		

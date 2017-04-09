@@ -11,6 +11,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="/static/css/sidebar.css" rel="stylesheet">
+    <link href="/static/css/modal.css" rel="stylesheet">
     <link href="/static/css/main.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -57,10 +58,10 @@
             <ul class="nav nav-list" id="sidebar-nav">
               <li><label class="nav-header">Make a complaint</label>
                 <ul class="nav nav-list tree">
-                  <li><a href="/select_type/bus/rural">Rural Bus</a></li>
-                  <li><a href="/select_type/bus/transantiago">Transantiago</a></li>
-                  <li><a href="/select_type/taxi">Taxi</a></li>
-                  <li><a href="/select_type/underground">Metro</a></li>
+                  <li><a href="#" data-toggle="modal" data-target="#modalRuralBus">Rural Bus</a></li>
+                  <li><a href="#" data-toggle="modal" data-target="#modalTransantiago">Transantiago</a></li>
+                  <li><a href="#" data-toggle="modal" data-target="#modalTaxi">Taxi</a></li>
+                  <li><a href="#" data-toggle="modal" data-target="#modalMetro">Metro</a></li>
                 </ul>
               </li>
               <li><label class="nav-header"></label></li>
