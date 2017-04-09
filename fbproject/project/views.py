@@ -28,6 +28,29 @@ class SelectTypeBusRuralView(View):
 		complainttypes = Problem.objects.all()
 		return render(request, 'project/sendComplaintBusRural.html',{'complainttypes':complainttypes})
 	def post(self, request):
+		username = None
+		if request.user.is_authenticated():
+			username = request.user.username
+		else:
+			return redirect("/login/")
+		lat = request.POST["lat"].strip()
+		lng = request.POST["long"].strip()
+		print "lat:"+lat
+		print "lng:"+lng
+		name = request.POST["name"].upper()
+		patent = request.POST["patent"].upper()
+		color = request.POST["color"].upper()
+		name = name+"-"+color
+		typecomplaint = request.POST["typecomplaint"]
+		description = request.POST["description"].upper()
+		user = User.objects.get(email = username)
+		typeComplaintObject = Problem.objects.get(pk=typecomplaint)
+		transport = Transport(None, 2, 1, patent, name, "", "")
+		transport.save()
+		complaint = Complaint(None, user.pk, typecomplaint, 
+			transport.pk, timezone.now(), int(float(lat)*10**6),
+			int(float(lng)*10**6), description)
+		complaint.save()
 		return redirect("/complaint_map/")
 
 class SelectTypeBusTransantiagoView(View):
@@ -35,6 +58,27 @@ class SelectTypeBusTransantiagoView(View):
 		complainttypes = Problem.objects.all()
 		return render(request, 'project/sendComplaintBusTransantiago.html',{'complainttypes':complainttypes})
 	def post(self, request):
+		username = None
+		if request.user.is_authenticated():
+			username = request.user.username
+		else:
+			return redirect("/login/")
+		lat = request.POST["lat"].strip()
+		lng = request.POST["long"].strip()
+		print "lat:"+lat
+		print "lng:"+lng
+		name = request.POST["name"].upper()
+		patent = request.POST["patent"].upper()
+		typecomplaint = request.POST["typecomplaint"]
+		description = request.POST["description"].upper()
+		user = User.objects.get(email = username)
+		typeComplaintObject = Problem.objects.get(pk=typecomplaint)
+		transport = Transport(None, 2, 0, patent, name, "", "")
+		transport.save()
+		complaint = Complaint(None, user.pk, typecomplaint, 
+			transport.pk, timezone.now(), int(float(lat)*10**6),
+			int(float(lng)*10**6), description)
+		complaint.save()
 		return redirect("/complaint_map/")
 
 class SelectTypeTaxiView(View):
@@ -42,12 +86,54 @@ class SelectTypeTaxiView(View):
 		complainttypes = Problem.objects.all()
 		return render(request, 'project/sendComplaintTaxi.html',{'complainttypes':complainttypes})
 	def post(self, request):
+		username = None
+		if request.user.is_authenticated():
+			username = request.user.username
+		else:
+			return redirect("/login/")
+		lat = request.POST["lat"].strip()
+		lng = request.POST["long"].strip()
+		print "lat:"+lat
+		print "lng:"+lng
+		name = request.POST["name"].upper()
+		patent = request.POST["patent"].upper()
+		typecomplaint = request.POST["typecomplaint"]
+		description = request.POST["description"].upper()
+		user = User.objects.get(email = username)
+		typeComplaintObject = Problem.objects.get(pk=typecomplaint)
+		transport = Transport(None, 1, 0, patent, name, "", "")
+		transport.save()
+		complaint = Complaint(None, user.pk, typecomplaint, 
+			transport.pk, timezone.now(), int(float(lat)*10**6),
+			int(float(lng)*10**6), description)
+		complaint.save()
 		return redirect("/complaint_map/")
 class SelectTypeUndergroundView(View):
 	def get(self, request):
 		complainttypes = Problem.objects.all()
 		return render(request, 'project/sendComplaintUnderground.html',{'complainttypes':complainttypes})
 	def post(self, request):
+		username = None
+		if request.user.is_authenticated():
+			username = request.user.username
+		else:
+			return redirect("/login/")
+		lat = request.POST["lat"].strip()
+		lng = request.POST["long"].strip()
+		print "lat:"+lat
+		print "lng:"+lng
+		line = request.POST["line"].upper()
+		station = request.POST["station"].upper()
+		typecomplaint = request.POST["typecomplaint"]
+		description = request.POST["description"].upper()
+		user = User.objects.get(email = username)
+		typeComplaintObject = Problem.objects.get(pk=typecomplaint)
+		transport = Transport(None, 3, 0, patent, name, "", "")
+		transport.save()
+		complaint = Complaint(None, user.pk, typecomplaint, 
+			transport.pk, timezone.now(), int(float(lat)*10**6),
+			int(float(lng)*10**6), description)
+		complaint.save()
 		return redirect("/complaint_map/")
 
 class RegisterView(View):
