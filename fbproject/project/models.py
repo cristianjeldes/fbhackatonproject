@@ -77,10 +77,10 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Complaint(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    pro = models.ForeignKey('Problem', models.DO_NOTHING, db_column='PRO_ID')  # Field name made lowercase.
-    type = models.ForeignKey('TypeTransport', models.DO_NOTHING, db_column='TYPE_ID')  # Field name made lowercase.
-    user = models.ForeignKey('User', models.DO_NOTHING, db_column='USER_ID')  # Field name made lowercase.
+    idcomplaint = models.AutoField(db_column='IDCOMPLAINT', primary_key=True)  # Field name made lowercase.
+    iduser = models.ForeignKey('User', models.DO_NOTHING, db_column='IDUSER', blank=True, null=True)  # Field name made lowercase.
+    idtypetransport = models.ForeignKey('TypeTransport', models.DO_NOTHING, db_column='IDTYPETRANSPORT', blank=True, null=True)  # Field name made lowercase.
+    idproblem = models.ForeignKey('Problem', models.DO_NOTHING, db_column='IDPROBLEM', blank=True, null=True)  # Field name made lowercase.
     time = models.DateTimeField(db_column='TIME')  # Field name made lowercase.
     gps_lat = models.BigIntegerField(db_column='GPS_LAT', blank=True, null=True)  # Field name made lowercase.
     gps_lon = models.BigIntegerField(db_column='GPS_LON', blank=True, null=True)  # Field name made lowercase.
@@ -136,7 +136,7 @@ class DjangoSession(models.Model):
 
 
 class Problem(models.Model):
-    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    idproblem = models.AutoField(db_column='IDPROBLEM', primary_key=True)  # Field name made lowercase.
     name = models.CharField(db_column='NAME', max_length=50)  # Field name made lowercase.
     description = models.TextField(db_column='DESCRIPTION', blank=True, null=True)  # Field name made lowercase.
 
@@ -146,8 +146,8 @@ class Problem(models.Model):
 
 
 class Transport(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    typ = models.ForeignKey('TypeTransport', models.DO_NOTHING, db_column='TYP_ID')  # Field name made lowercase.
+    idtransport = models.AutoField(db_column='IDTRANSPORT', primary_key=True)  # Field name made lowercase.
+    idtypetransport = models.ForeignKey('TypeTransport', models.DO_NOTHING, db_column='IDTYPETRANSPORT', blank=True, null=True)  # Field name made lowercase.
     rural = models.IntegerField(db_column='RURAL', blank=True, null=True)  # Field name made lowercase.
     patent = models.CharField(db_column='PATENT', max_length=30, blank=True, null=True)  # Field name made lowercase.
     name = models.CharField(db_column='NAME', max_length=50, blank=True, null=True)  # Field name made lowercase.
@@ -160,7 +160,7 @@ class Transport(models.Model):
 
 
 class TypeTransport(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    idtypetransport = models.AutoField(db_column='IDTYPETRANSPORT', primary_key=True)  # Field name made lowercase.
     name = models.CharField(db_column='NAME', max_length=50)  # Field name made lowercase.
 
     class Meta:
@@ -169,7 +169,7 @@ class TypeTransport(models.Model):
 
 
 class User(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    iduser = models.AutoField(db_column='IDUSER', primary_key=True)  # Field name made lowercase.
     id_django = models.IntegerField(db_column='ID_DJANGO', blank=True, null=True)  # Field name made lowercase.
     name = models.CharField(db_column='NAME', max_length=50)  # Field name made lowercase.
     email = models.CharField(db_column='EMAIL', max_length=50)  # Field name made lowercase.
