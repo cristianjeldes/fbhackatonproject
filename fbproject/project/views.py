@@ -11,13 +11,80 @@ import math
 from collections import namedtuple
 global basePath
 from django.contrib.auth.models import User as User2
+import json
+Data = namedtuple("Data",["lat","lng","type","text"])
+
 class IndexView(View):
 	def get(self, request):
 		complainttypes = Problem.objects.all()
-		return render(request, 'project/index.html',{'complainttypes':complainttypes})
+		textData = "<div class='info'>$1</div>"
+		complaints = Complaint.objects.all()
+		rural = []
+		transantiago = []
+		taxis = []
+		metro = []
+		mapData = []
+		for complaint in complaints:
+			if complaint.idtransport.idtypetransport == 2 and complaint.idtransport.rural == 1:
+				rural.append(complaint)
+			elif complaint.idtransport.idtypetransport == 2:
+				transantiago.append(complaint)
+			elif complaint.idtransport.idtypetransport == 1:
+				taxis.append(complaint)
+			else:
+				metro.append(complaint)
+		for c in rural:
+			mapData.append([complaint.gps_lat/10.0**6, complaint.gps_lon/10.0**6,
+				"bus", textData.replace("$1",complaint.idtransport.name)+
+				textData.replace("$1",complaint.idproblem.name)])
+		for c in transantiago:
+			mapData.append([complaint.gps_lat/10.0**6, complaint.gps_lon/10.0**6,
+				"bus", textData.replace("$1",complaint.idtransport.name)+
+				textData.replace("$1",complaint.idproblem.name)])
+		for c in taxis:
+			mapData.append([complaint.gps_lat/10.0**6, complaint.gps_lon/10.0**6,
+				"taxi", textData.replace("$1",complaint.idtransport.name)+
+				textData.replace("$1",complaint.idproblem.name)])
+		for c in metro:
+			mapData.append([complaint.gps_lat/10.0**6, complaint.gps_lon/10.0**6,
+				"metro", textData.replace("$1",complaint.idtransport.station)+
+				textData.replace("$1",complaint.idproblem.name)])
+		return render(request, 'project/index.html',{'complainttypes':complainttypes,"mapData":json.dumps(mapData,ensure_ascii=False)})
 class ComplaintMapView(View):
 	def get(self, request):
-		return render(request, 'project/complaintMap.html',{})
+		textData = "<div class='info'>$1</div>"
+		complaints = Complaint.objects.all()
+		rural = []
+		transantiago = []
+		taxis = []
+		metro = []
+		mapData = []
+		for complaint in complaints:
+			if complaint.idtransport.idtypetransport == 2 and complaint.idtransport.rural == 1:
+				rural.append(complaint)
+			elif complaint.idtransport.idtypetransport == 2:
+				transantiago.append(complaint)
+			elif complaint.idtransport.idtypetransport == 1:
+				taxis.append(complaint)
+			else:
+				metro.append(complaint)
+		for c in rural:
+			mapData.append(Data(complaint.gps_lat, complaint.gps_lon,
+				"bus", textData.replace("$1",complaint.idtransport.name)+
+				textData.replace("$1",complaint.idproblem.name)))
+		for c in transantiago:
+			mapData.append(Data(complaint.gps_lat, complaint.gps_lon,
+				"bus", textData.replace("$1",complaint.idtransport.name)+
+				textData.replace("$1",complaint.idproblem.name)))
+		for c in taxis:
+			mapData.append(Data(complaint.gps_lat, complaint.gps_lon,
+				"taxi", textData.replace("$1",complaint.idtransport.name)+
+				textData.replace("$1",complaint.idproblem.name)))
+		for c in metro:
+			mapData.append(Data(complaint.gps_lat, complaint.gps_lon,
+				"metro", textData.replace("$1",complaint.idtransport.name)+
+				textData.replace("$1",complaint.idproblem.station)))
+		return render(request, 'project/complaintMap.html',{"mapData":json.dumps(mapData)})
 class SelectTypeView(View):
 	def get(self, request):
 		return render(request, 'project/selectView.html',{})

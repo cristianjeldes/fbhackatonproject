@@ -11,10 +11,18 @@
 
 {% endblock %}
 {% block js %}
+
 <script src="/static/js/index.js"></script>
 <script src="/static/js/markerclusterer.js"></script>
 <script src="/static/js/complaintclusterer.js"></script>
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAs9LO2I1FriDFB7m2u_ft5LC35h9Mxq_0&callback=initMap">
+</script>
+<script type="text/javascript">
+function getData(){
+    var locations = {{mapData|safe}};/*;[
+        {lat: -33.53962814, lng: -70.82225783, type: 'bus', description: '<div class="info">Bus</div>'}]*/
+    return locations;
+}
 </script>
 {% endblock %}
