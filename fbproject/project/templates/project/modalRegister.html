@@ -1,0 +1,45 @@
+<!-- Modal -->
+<div id="modalRegister" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+    <form method="post" action="" enctype="multipart/form-data">
+		{% csrf_token %}
+      	<div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+        	<h4 class="modal-title">Create new account</h4>
+      	</div>
+      	<div class="modal-body">
+			<div class="form-group">
+				<div class="row">
+					<label for="name">Full name
+						<input required class="form-control" type="text" name="name" placeholder="Cristian Jeldes">
+					</label>
+				</div>
+				<div class="row">
+					<label for="mail">E-Mail
+						<input class="form-control" type="text" name="mail" placeholder="Example: someone@fb.com">
+					</label>
+				</div>
+				<div class="row">
+					<label for="password">Password
+						<input class="form-control" type="password" name="password" placeholder="Example: ******">
+					</label>
+				</div>
+				<div class="row">
+					<label for="password2">Repeat-Password
+						<input class="form-control" type="password" name="password2" placeholder="Example: ******">
+					</label>
+				</div>
+				
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input class="btn-primary btn" type="submit" value="Register"/>
+  		</div>
+    	</div>
+    </form>
+  </div>
+</div>
+		

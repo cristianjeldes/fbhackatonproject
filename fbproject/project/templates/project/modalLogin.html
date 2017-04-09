@@ -1,0 +1,35 @@
+<!-- Modal -->
+<div id="modalLogin" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+    <form method="post" action="{% url 'login' %}" enctype="multipart/form-data">
+		{% csrf_token %}
+      	<div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+        	<h4 class="modal-title">Login</h4>
+      	</div>
+      	<div class="modal-body">
+			<div class="form-group">
+				<div class="row">
+					<label for="username">Mail
+						<input class="form-control" type="text" name="username" placeholder="Example: someone@fb.com">
+					</label>
+				</div>
+				<div class="row">
+					<label for="password">Password
+						<input class="form-control" type="password" name="password" placeholder="*******">
+					</label>
+				</div>
+				
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input class="btn-primary btn" type="submit" value="Log in"/>
+  		</div>
+    	</div>
+    </form>
+  </div>
+</div>
+		
