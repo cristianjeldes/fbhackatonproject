@@ -25,30 +25,31 @@ class IndexView(View):
 		metro = []
 		mapData = []
 		for complaint in complaints:
-			if complaint.idtransport.idtypetransport == 2 and complaint.idtransport.rural == 1:
+			if complaint.idtransport.idtypetransport.pk == 2 and complaint.idtransport.rural == 1:
 				rural.append(complaint)
-			elif complaint.idtransport.idtypetransport == 2:
+			elif complaint.idtransport.idtypetransport.pk == 2:
 				transantiago.append(complaint)
-			elif complaint.idtransport.idtypetransport == 1:
+			elif complaint.idtransport.idtypetransport.pk == 1:
 				taxis.append(complaint)
-			else:
+			elif complaint.idtransport.idtypetransport.pk == 3:
 				metro.append(complaint)
 		for c in rural:
-			mapData.append([complaint.gps_lat/10.0**6, complaint.gps_lon/10.0**6,
-				"bus", textData.replace("$1",complaint.idtransport.name)+
-				textData.replace("$1",complaint.idproblem.name)])
+			mapData.append([c.gps_lat/10.0**6, c.gps_lon/10.0**6,
+				"bus", textData.replace("$1",c.idtransport.name)+
+				textData.replace("$1",c.idproblem.name)])
 		for c in transantiago:
-			mapData.append([complaint.gps_lat/10.0**6, complaint.gps_lon/10.0**6,
-				"bus", textData.replace("$1",complaint.idtransport.name)+
-				textData.replace("$1",complaint.idproblem.name)])
+			mapData.append([c.gps_lat/10.0**6, c.gps_lon/10.0**6,
+				"bus", textData.replace("$1",c.idtransport.name)+
+				textData.replace("$1",c.idproblem.name)])
 		for c in taxis:
-			mapData.append([complaint.gps_lat/10.0**6, complaint.gps_lon/10.0**6,
-				"taxi", textData.replace("$1",complaint.idtransport.name)+
-				textData.replace("$1",complaint.idproblem.name)])
+			mapData.append([c.gps_lat/10.0**6, c.gps_lon/10.0**6,
+				"taxi", textData.replace("$1",c.idtransport.name)+
+				textData.replace("$1",c.idproblem.name)])
 		for c in metro:
-			mapData.append([complaint.gps_lat/10.0**6, complaint.gps_lon/10.0**6,
-				"metro", textData.replace("$1",complaint.idtransport.station)+
-				textData.replace("$1",complaint.idproblem.name)])
+			print c.idtransport.station,c.idproblem.name
+			mapData.append([c.gps_lat/10.0**6, c.gps_lon/10.0**6,
+				"metro", textData.replace("$1",c.idtransport.station)+
+				textData.replace("$1",c.idproblem.name)])
 		return render(request, 'project/index.html',{'complainttypes':complainttypes,"mapData":json.dumps(mapData,ensure_ascii=False)})
 class ComplaintMapView(View):
 	def get(self, request):
