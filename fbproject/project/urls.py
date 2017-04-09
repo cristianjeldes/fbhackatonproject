@@ -20,5 +20,11 @@ from .views import *
 urlpatterns = [
 	url(r'^$', IndexView.as_view()),
 	url(r'^complaint_map/$', ComplaintMapView.as_view()),
+	url(r'^select_type/$', SelectTypeView.as_view()),
+	url(r'^select_type/bus/$', SelectTypeBusView.as_view()),
+	url(r'^select_type/bus/rural/$', SelectTypeBusRuralView.as_view()),
+	url(r'^select_type/bus/transantiago/$', SelectTypeBusTransantiagoView.as_view()),
+    url(r'^select_type/taxi/$', SelectTypeTaxiView.as_view()),
+    url(r'^select_type/underground/$', SelectTypeUndergroundView.as_view()),
     url(r'^admin/', admin.site.urls),
 ]

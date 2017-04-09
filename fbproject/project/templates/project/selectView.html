@@ -1,0 +1,18 @@
+{% extends 'project/base.html' %}
+{% block content %}
+<div style="width: 100%; height: 96%;position: absolute; top:4%;right:0px;">
+   <a href="/select_type/taxi">
+   	<div class="select-type"><h3>Taxi</h3></div>
+   </a>
+   <a href="/select_type/underground">
+   	<div class="select-type"><h3>Underground</h3></div>
+   </a>
+   <a href="/select_type/bus">
+   	<div class="select-type"><h3>Microbus</h3></div>
+   </a>
+</div>
+<div style="clear:both"></div>
+{% endblock %}
+{% block js %}
+<script src="/static/js/index.js"></script>
+{% endblock %}
