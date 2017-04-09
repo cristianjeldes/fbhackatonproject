@@ -48,3 +48,9 @@ class SelectTypeUndergroundView(View):
 		return render(request, 'project/sendComplaintUnderground.html',{'complainttypes':complainttypes})
 	def post(self, request):
 		return redirect("/complaint_map/")
+
+class RegisterView(View):
+	def get(self, request):
+		return render(request, 'project/register.html',{})
+	def post(self, request):
+		return redirect("/login/")

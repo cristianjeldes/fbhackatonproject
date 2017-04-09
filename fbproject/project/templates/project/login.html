@@ -3,7 +3,7 @@
 <div style="width: 100%; height: 96%;position: absolute; top:4%;right:0px; background:rgb(40,40,40);">
 	<div class="form-content center-block">
 		<h1 style="text-align:center;">Login!</h1>
-	  	<form method="post" action="" enctype="multipart/form-data">
+	  	<form method="post" action="{% url 'login' %}" enctype="multipart/form-data">
 		    {% csrf_token %}
 		    <div class="form-group" style="width:500px;margin: 0 auto;">
 			    <div class="row">
@@ -20,12 +20,15 @@
 			</div>
 	  	</form>
 	</div>
-</d
+</div>
 {% endblock %}
 {% block js %}
 <script src="/static/js/index.js"></script>
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAs9LO2I1FriDFB7m2u_ft5LC35h9Mxq_0&callback=initMap">
+function getData(){
+	return {{django.locations}};
+}
 </script>
 <script src="/static/js/geolocation.js"></script>
 {% endblock %}
