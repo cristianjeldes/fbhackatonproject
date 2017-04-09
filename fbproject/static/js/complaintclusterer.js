@@ -1,12 +1,11 @@
 function initMap() {
 
+    var locations = getData();
+
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 11,
         center: {lat: -33.448890, lng: -70.669265}
     });
-
-    // Create an array of alphabetical characters used to label the markers.
-    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     // The next values are in terms of pixels
     var iconSize = 48;
@@ -31,58 +30,41 @@ function initMap() {
             anchor: new google.maps.Point(iconMiddle, iconSize),
             scaledSize: new google.maps.Size(iconScaled, iconScaled)
         },
-        subway: {
-            url: iconBase + 'subway.png',
+        metro: {
+            url: iconBase + 'metro.png',
             size: new google.maps.Size(iconSize, iconSize),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(iconMiddle, iconSize),
             scaledSize: new google.maps.Size(iconScaled, iconScaled)
         }
     };
-    var lastWindow;
 
+    var lastInfo;
 
     // Add some markers to the map.
     // Note: The code uses the JavaScript Array.prototype.map() method to
     // create an array of markers based on a given "locations" array.
     // The map() method here has nothing to do with the Google Maps API.
     var markers = locations.map(function(location, i) {
-        var type;
-        var title;
-        // REPLACE THESE WITH THE CORRECT CONDITIONS
-        var iconIndex = Math.floor((Math.random() * 3) + 1);
-        if(iconIndex == 1) {
-            type = 'bus';
-            title = 'Bus';
-        } else if(iconIndex == 2) {
-            type = 'taxi';
-            title = 'Taxi';
-        } else if(iconIndex == 3) {
-            type = 'subway';
-            title = 'Subway';
-        }
+        var position = {lat: location.lat, lng: location.lng};
         
         var marker =  new google.maps.Marker({
-            position: location,
-            icon: icons[type],
-            title: title
+            position: position,
+            icon: icons[location.type],
+            title: location.type
         });
 
-        var contentString = '<div class="info">' +
-        '<b>' + title + '</b>' +
-        '</div>';
-
         var infoWindow = new google.maps.InfoWindow({
-            content: contentString,
+            content: location.description,
             pixelOffset: new google.maps.Size(infoOffset, 0)
         });
 
         marker.addListener('click', function() {
-            if(lastWindow) {
-                lastWindow.close();
+            if(lastInfo) {
+                lastInfo.close();
             }
             infoWindow.open(map, marker);
-            lastWindow = infoWindow;
+            lastInfo = infoWindow;
         });
 
         return marker;
@@ -93,6 +75,7 @@ function initMap() {
         {imagePath: '/static/img/markerclusterer/m'});
 }
 // bus auto y metro
+/*
 var locations = [
     {lat: -33.53962814, lng: -70.82225783},
     {lat: -33.5836362, lng: -70.88320236},
@@ -194,4 +177,4 @@ var locations = [
     {lat: -33.66228025, lng: -70.59905909},
     {lat: -33.37053829, lng: -70.5520489},
     {lat: -33.57212596, lng: -70.81216978}
-]
+]*/
