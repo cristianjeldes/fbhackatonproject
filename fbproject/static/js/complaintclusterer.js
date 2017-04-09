@@ -1,6 +1,8 @@
+// order of array is, lat, lng, type and description
 function initMap() {
 
     var locations = getData();
+    console.log(locations);
 
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 11,
@@ -46,16 +48,16 @@ function initMap() {
     // create an array of markers based on a given "locations" array.
     // The map() method here has nothing to do with the Google Maps API.
     var markers = locations.map(function(location, i) {
-        var position = {lat: location.lat, lng: location.lng};
+        var position = {lat: location[0], lng: location[1]};
         
         var marker =  new google.maps.Marker({
             position: position,
-            icon: icons[location.type],
-            title: location.type
+            icon: icons[location[2]],
+            title: location[2]
         });
 
         var infoWindow = new google.maps.InfoWindow({
-            content: location.description,
+            content: location[3],
             pixelOffset: new google.maps.Size(infoOffset, 0)
         });
 
@@ -74,5 +76,3 @@ function initMap() {
     var markerCluster = new MarkerClusterer(map, markers,
         {imagePath: '/static/img/markerclusterer/m'});
 }
-// bus auto y metro
-
