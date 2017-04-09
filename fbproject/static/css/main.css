@@ -15,6 +15,11 @@
 	color: rgb(240,240,240);
 }
 
+.form-group {
+	width: 450px;
+	margin: 0 auto;
+}
+
 #form-title {
 	color: #dedede;
 	font-weight: bold;
